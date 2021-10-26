@@ -47,6 +47,19 @@ public class TestBase {
         }
     }
 
+    public void loginUser(String email, String password) {
+        driver.findElement(By.cssSelector("[href='/login']")).click();
+
+        driver.findElement(By.cssSelector("[placeholder='Email']")).click();
+        driver.findElement(By.cssSelector("[placeholder='Email']")).clear();
+        driver.findElement(By.cssSelector("[placeholder='Email']")).sendKeys(email);
+
+        driver.findElement(By.cssSelector("[placeholder='Password']")).click();
+        driver.findElement(By.cssSelector("[placeholder='Password']")).clear();
+        driver.findElement(By.cssSelector("[placeholder='Password']")).sendKeys(password);
+        driver.findElement(By.xpath("//button[contains(., 'Login')]")).click();
+    }
+
     @AfterMethod(enabled = false)
     public void tearDown() {
         driver.quit();
