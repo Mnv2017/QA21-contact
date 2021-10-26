@@ -17,7 +17,7 @@ public class CreateAccountTest extends TestBase {
     public void ensurePreconditions(){
         if (!isElementPresent(By.xpath("//a[contains(.,'LOGIN')]"))){
             // если нет кнопки Логин, нужно выйти (Логаут)
-            driver.findElement(By.xpath(("//button[contains(.,'Sign Out')]")));
+            driver.findElement(By.xpath(("//button[contains(.,'Sign Out')]"))).click();
         }
     }
 
