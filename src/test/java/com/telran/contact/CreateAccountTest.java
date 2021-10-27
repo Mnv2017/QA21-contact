@@ -15,32 +15,29 @@ public class CreateAccountTest extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions(){
-        if (!isElementPresent(By.xpath("//a[contains(.,'LOGIN')]"))){
+        if (!isLoginTabPresent()){
             // если нет кнопки Логин, нужно выйти (Логаут)
-            driver.findElement(By.xpath(("//button[contains(.,'Sign Out')]"))).click();
+            click(By.xpath(("//button[contains(.,'Sign Out')]")));
         }
     }
 
     @Test
     public void registrationPositiveTest(){
-        driver.findElement(By.xpath("//a[contains(.,'LOGIN')]")).click();
+        click(By.xpath("//a[contains(.,'LOGIN')]"));
         // форма регистрации присутствует
-        Assert.assertTrue(isElementPresent(By.cssSelector("div.login_login__3EHKB")));
+        Assert.assertTrue(isLoginRegistrationFormPresent());
         // 1) кликаем на поле 2) очищаем 3) заполняем
 
-        driver.findElement(By.cssSelector("[placeholder='Email']")).click();
-        driver.findElement(By.cssSelector("[placeholder='Email']")).clear();
-        driver.findElement(By.cssSelector("[placeholder='Email']")).sendKeys("mmm@mail.ru");
+        type(By.cssSelector("[placeholder='Email']"), "mmm@mail.ru");
 
-        driver.findElement(By.cssSelector("[placeholder='Password']")).click();
-        driver.findElement(By.cssSelector("[placeholder='Password']")).clear();
-        driver.findElement(By.cssSelector("[placeholder='Password']")).sendKeys("Mm$123456");
+        type(By.cssSelector("[placeholder='Password']"), "Mm$123456");
 
-        driver.findElement(By.xpath("//button[contains(., 'Registration')]")).click();
-        Assert.assertTrue(isElementPresent(By.xpath("//button[contains(.,'Sign Out')]")));
+        click(By.xpath("//button[contains(., 'Registration')]"));
+        Assert.assertTrue(isSignOutTabPresent());
 
         // [placeholder='Email']
         // [placeholder='Password']
         // //button[contains(., 'Registration')]
     }
+
 }

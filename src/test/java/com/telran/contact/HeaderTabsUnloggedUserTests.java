@@ -11,35 +11,31 @@ public class HeaderTabsUnloggedUserTests extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
         // если нет кнопки Логин, нужно сделать Логаут
-        if (!isElementPresent(By.xpath("//a[contains(.,'LOGIN')]"))) {
-            driver.findElement(By.xpath(("//button[contains(.,'Sign Out')]"))).click();
+        if (!isLoginTabPresent()) {
+            click(By.xpath(("//button[contains(.,'Sign Out')]")));
         }
     }
 
     @Test
     public void checkTabHome() {
-        driver.findElement(By.cssSelector("[href='/home']")).click();
+        click(By.cssSelector("[href='/home']"));
         Assert.assertTrue(isElementPresent(By.cssSelector("div:nth-child(2) >div >div")));
     }
 
     @Test
     public void checkTabAbout() {
 //        driver.findElement(By.cssSelector("a[class='active']")).click();
-        driver.findElement(By.cssSelector("[href='/about']")).click();
+        click(By.cssSelector("[href='/about']"));
 //        driver.findElement(By.xpath("//a[contains(.,'ABOUT')]")).click();
         Assert.assertTrue(isElementPresent(By.cssSelector("div.about_main__2Uv5W")));
     }
 
     @Test
     public void checkTabLogin() {
-        driver.findElement(By.cssSelector("[href='/login']")).click();
-        Assert.assertTrue(isElementPresent(By.cssSelector("div.login_login__3EHKB")));
+        click(By.cssSelector("[href='/login']"));
+        Assert.assertTrue(isLoginRegistrationFormPresent());
     }
 
-    @AfterMethod
-    public void tearDown() {
-        driver.quit();
-    }
 
     // [href='/home']     div:nth-child(2) >div >div
     // [class='active']    div.about_main__2Uv5W

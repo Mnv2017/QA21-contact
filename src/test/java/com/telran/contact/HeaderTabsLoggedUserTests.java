@@ -9,15 +9,15 @@ public class HeaderTabsLoggedUserTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        if (!isElementPresent(By.xpath("//a[contains(.,'LOGIN')]"))) {
-            driver.findElement(By.xpath(("//button[contains(.,'Sign Out')]"))).click();
+        if (!isLoginTabPresent()) {
+            click(By.xpath(("//button[contains(.,'Sign Out')]")));
         }
     }
 
-    @Test(enabled = false)
+    @Test
     public void checkTabLogin() {
-        driver.findElement(By.cssSelector("[href='/login']")).click();
-        Assert.assertTrue(isElementPresent(By.cssSelector("div.login_login__3EHKB")));
+        click(By.cssSelector("[href='/login']"));
+        Assert.assertTrue(isLoginRegistrationFormPresent());
     }
 
     @Test
@@ -29,7 +29,7 @@ public class HeaderTabsLoggedUserTests extends TestBase {
     @Test
     public void checkTabAdd() {
         loginUser("mmm@mail.ru", "Mm$123456");
-        driver.findElement(By.cssSelector("[href='/add']")).click();
+        click(By.cssSelector("[href='/add']"));
         Assert.assertTrue(isElementPresent(By.cssSelector("[class='add_form__2rsm2']")));
     }
 }
