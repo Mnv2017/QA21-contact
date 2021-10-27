@@ -2,7 +2,9 @@ package com.telran.contact;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
@@ -17,6 +19,7 @@ public class TestBase {
     @BeforeMethod
     public void setUp() {
         driver = new ChromeDriver();
+//        driver = new FirefoxDriver();
         driver.get("https://contacts-app.tobbymarshall815.vercel.app");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -26,7 +29,7 @@ public class TestBase {
         return driver.findElements(By.cssSelector("div:nth-child(2) > div > div")).size() > 0;
     }
 
-    public boolean isElementPresent(By locator) { // универсальный - локатор = стратегия + сам локатор
+    public boolean isElementPresent(By locator) { // универсальный: локатор = стратегия + сам локатор
         return driver.findElements(locator).size() > 0;
     }
 
@@ -59,6 +62,20 @@ public class TestBase {
         driver.findElement(By.cssSelector("[placeholder='Password']")).clear();
         driver.findElement(By.cssSelector("[placeholder='Password']")).sendKeys(password);
         driver.findElement(By.xpath("//button[contains(., 'Login')]")).click();
+    }
+
+    public void addContactExample(){
+        click(By.cssSelector("a:nth-child(5)"));
+
+        type(By.cssSelector("[placeholder='Name']"), "Name");
+        type(By.cssSelector("input:nth-child(2)"), "Lastname");
+        type(By.cssSelector("input:nth-child(3)"), "123456");
+        type(By.cssSelector("input:nth-child(4)"), "exampl@gmail.com");
+        type(By.cssSelector("input:nth-child(5)"), "City");
+        type(By.cssSelector("input:nth-child(6)"), "Description");
+
+        click(By.cssSelector(".add_form__2rsm2 button"));
+
     }
 
     @AfterMethod(enabled = false)
@@ -116,6 +133,7 @@ public class TestBase {
 
     public void pause(int millis){
         // ожидание в милисекундах
+        System.out.println();
         new WebDriverWait(driver,Duration.ofSeconds(millis));
     }
 
