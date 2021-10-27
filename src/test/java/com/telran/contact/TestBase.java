@@ -133,7 +133,6 @@ public class TestBase {
 
     public void pause(int millis){
         // ожидание в милисекундах
-        System.out.println();
         new WebDriverWait(driver,Duration.ofSeconds(millis));
     }
 
