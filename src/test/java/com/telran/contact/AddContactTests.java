@@ -26,7 +26,8 @@ public class AddContactTests extends TestBase {
         // кликнуть на Add
         click(By.cssSelector("a:nth-child(5)"));
         pause(1000);
-        type(By.cssSelector("[placeholder='Name']"), "Marina");
+        // заполнить поля
+        type(By.cssSelector("[placeholder='Name']"), "Maria");
         type(By.cssSelector("input:nth-child(2)"), "Marinina");
         type(By.cssSelector("input:nth-child(3)"), "123-456" + d);
         type(By.cssSelector("input:nth-child(4)"), "mmm" + d + "@gmail.com");
@@ -38,7 +39,7 @@ public class AddContactTests extends TestBase {
 
         click(By.cssSelector(".add_form__2rsm2 button"));
 
-        // заполнить поля
+
         // кликнуть на Save
         // Assert
 

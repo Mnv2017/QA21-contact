@@ -23,6 +23,7 @@ public class HeaderTabsLoggedUserTests extends TestBase {
     @Test
     public void checkTabContacts() {
         loginUser("mmm@mail.ru", "Mm$123456");
+        click(By.cssSelector("[href='/contacts']"));
         Assert.assertTrue(isElementPresent(By.cssSelector("div.contact-page_message__2qafk")));
     }
 
@@ -33,3 +34,4 @@ public class HeaderTabsLoggedUserTests extends TestBase {
         Assert.assertTrue(isElementPresent(By.cssSelector("[class='add_form__2rsm2']")));
     }
 }
+
