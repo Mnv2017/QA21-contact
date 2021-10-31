@@ -10,9 +10,8 @@ public class HeaderTabsUnloggedUserTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        // если нет кнопки Логин, нужно сделать Логаут
         if (!isLoginTabPresent()) {
-            click(By.xpath(("//button[contains(.,'Sign Out')]")));
+            clickOnSignOutButton();
         }
     }
 
@@ -24,9 +23,7 @@ public class HeaderTabsUnloggedUserTests extends TestBase {
 
     @Test
     public void checkTabAbout() {
-//        driver.findElement(By.cssSelector("a[class='active']")).click();
         click(By.cssSelector("[href='/about']"));
-//        driver.findElement(By.xpath("//a[contains(.,'ABOUT')]")).click();
         Assert.assertTrue(isElementPresent(By.cssSelector("div.about_main__2Uv5W")));
     }
 
@@ -36,9 +33,4 @@ public class HeaderTabsUnloggedUserTests extends TestBase {
         Assert.assertTrue(isLoginRegistrationFormPresent());
     }
 
-
-    // [href='/home']     div:nth-child(2) >div >div
-    // [class='active']    div.about_main__2Uv5W
-    // a[class='active'] ??
-    // [href='/login']    div.login_login__3EHKB
 }

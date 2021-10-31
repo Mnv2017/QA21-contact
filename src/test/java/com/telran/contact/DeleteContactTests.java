@@ -15,7 +15,7 @@ import static java.lang.Thread.sleep;
 public class DeleteContactTests extends TestBase {
 
     @BeforeMethod
-    public void ensuerPreconditions() {
+    public void ensurePreconditions() throws InterruptedException {
         if (!isSignOutTabPresent()) {
             loginUser("mmm@mail.ru", "Mm$123456");
         }
@@ -23,13 +23,12 @@ public class DeleteContactTests extends TestBase {
     }
 
     @Test
-    public void deleteContactPositiveTest() {
-        click(By.cssSelector("[href='/contacts']")); //кнопка Contacts
-        click(By.xpath("//div[@class='contact-item_card__2SOIM']/h3[contains(.,'123456')]")); // кликнуть по тестовому контакту
-        click(By.xpath("//div[@class='contact-item-detailed_card__50dTS']/button[contains(.,'Remove')]"));// кнопка Remove
-        WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(2));
-        w.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='contact-item_card__2SOIM']/h3[contains(.,'123456')]")));
-        Assert.assertTrue(!isElementPresent2(By.xpath("//div[@class='contact-item_card__2SOIM']/h3[contains(.,'123456')]")));
+    public void deleteContactPositiveTest() throws InterruptedException {
+        removeContactExample();
+        Thread.sleep(1000);
+//        WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(2));
+//        w.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='contact-item_card__2SOIM']/h3[contains(.,'654321')]")));
+        Assert.assertTrue(!isElementPresent2(By.xpath("//div[@class='contact-item_card__2SOIM']/h3[contains(.,'654321')]")));
 
     }
 

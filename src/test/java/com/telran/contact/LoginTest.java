@@ -1,54 +1,42 @@
 package com.telran.contact;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
-
 public class LoginTest extends TestBase {
 
     @BeforeMethod
-    public void ensurePreconditions() {
+    public void ensurePreconditions() throws InterruptedException {
         if (!isLoginTabPresent()) {
-            // если нет кнопки Логин, нужно выйти (Логаут)
-            click(By.xpath(("//button[contains(.,'Sign Out')]")));
+            clickOnSignOutButton();
         }
     }
 
-    @Test
+    @Test(priority = 1)
     public void loginRegisteredUserPositiveTest() {
         // click on Login tab
-        click(By.xpath("//a[contains(.,'LOGIN')]"));
+        clickOnLoginTab();
         // форма регистрации присутствует
         Assert.assertTrue(isLoginRegistrationFormPresent());
-
-        // fill Login form
-        type(By.cssSelector("[placeholder='Email']"), "mmm@mail.ru");
-        type(By.cssSelector("[placeholder='Password']"), "Mm$123456");
-        // submit Login
-        click(By.xpath("//button[contains(., 'Login')]"));
+        login(new User()
+                .setEmail("mmm@mail.ru")
+                .setPassword("Mm$123456"));
         // Assert user logged
         Assert.assertTrue(isSignOutTabPresent());
     }
 
-    @Test
+    @Test(priority =2)
     public void loginRegisteredUserNegativeWrongPasswortTest() {
         // click on Login tab
-        click(By.xpath("//a[contains(.,'LOGIN')]"));
+        clickOnLoginTab();
         // форма регистрации присутствует
         Assert.assertTrue(isLoginRegistrationFormPresent());
-
         // fill Login form
-        type(By.cssSelector("[placeholder='Email']"), "mmm@mail.ru");
-
-        type(By.cssSelector("[placeholder='Password']"), "Mm123456");
-        // submit Login
-        click(By.xpath("//button[contains(., 'Login')]"));
+        login(new User()
+                .setEmail("mmm@mail.ru")
+                .setPassword("Mm123456")); // убрали спецсимвол
         // Assert user logged
         Assert.assertTrue(isAlertPresent());
     }

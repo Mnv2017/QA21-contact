@@ -1,6 +1,5 @@
 package com.telran.contact;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -14,30 +13,36 @@ public class CreateAccountTest extends TestBase {
     // проверить, что зарегились (есть кнопка выхода)
 
     @BeforeMethod
-    public void ensurePreconditions(){
+    public void ensurePreconditions() throws InterruptedException {
         if (!isLoginTabPresent()){
-            // если нет кнопки Логин, нужно выйти (Логаут)
-            click(By.xpath(("//button[contains(.,'Sign Out')]")));
+            clickOnSignOutButton();
         }
     }
 
     @Test
-    public void registrationPositiveTest(){
-        click(By.xpath("//a[contains(.,'LOGIN')]"));
+    public void registrationPositiveTest() throws InterruptedException {
+        clickOnLoginTab();
         // форма регистрации присутствует
         Assert.assertTrue(isLoginRegistrationFormPresent());
-        // 1) кликаем на поле 2) очищаем 3) заполняем
-
-        type(By.cssSelector("[placeholder='Email']"), "mmm@mail.ru");
-
-        type(By.cssSelector("[placeholder='Password']"), "Mm$123456");
-
-        click(By.xpath("//button[contains(., 'Registration')]"));
+        createNewAccount(new User()
+                // fluent interface
+                .setEmail("mmm@mail.ru")
+                .setPassword("Mm$123456"));
+        Thread.sleep(1000);
         Assert.assertTrue(isSignOutTabPresent());
+    }
 
-        // [placeholder='Email']
-        // [placeholder='Password']
-        // //button[contains(., 'Registration')]
+    @Test
+    public void registrationNegativeWithoutPasswordTest(){
+        clickOnLoginTab();
+        // форма регистрации присутствует
+        Assert.assertTrue(isLoginRegistrationFormPresent());
+        createNewAccount(new User()
+                        .setEmail("mmm@mail.ru")
+                // с незаполненным паролем
+                //      .setPassword("Mm$123456")
+                );
+        Assert.assertTrue(isAlertPresent());
     }
 
 }

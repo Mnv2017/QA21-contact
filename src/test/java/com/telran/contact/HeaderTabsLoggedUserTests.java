@@ -8,26 +8,27 @@ import org.testng.annotations.Test;
 public class HeaderTabsLoggedUserTests extends TestBase {
 
     @BeforeMethod
-    public void ensurePreconditions() {
+    public void ensurePreconditions() throws InterruptedException {
         if (!isLoginTabPresent()) {
-            click(By.xpath(("//button[contains(.,'Sign Out')]")));
+            clickOnSignOutButton();
         }
     }
 
-    @Test
+    @Test(priority = 1)
     public void checkTabLogin() {
         click(By.cssSelector("[href='/login']"));
         Assert.assertTrue(isLoginRegistrationFormPresent());
     }
 
-    @Test
+    @Test(priority = 2)
     public void checkTabContacts() {
         loginUser("mmm@mail.ru", "Mm$123456");
         click(By.cssSelector("[href='/contacts']"));
-        Assert.assertTrue(isElementPresent(By.cssSelector("div.contact-page_message__2qafk")));
+//        Assert.assertTrue(isElementPresent(By.cssSelector("div.contact-page_message__2qafk"))); // нет контактов
+        Assert.assertTrue(isElementPresent(By.cssSelector("div.contact-item_card__2SOIM"))); // есть хотя бы один
     }
 
-    @Test
+    @Test(priority = 3)
     public void checkTabAdd() {
         loginUser("mmm@mail.ru", "Mm$123456");
         click(By.cssSelector("[href='/add']"));
