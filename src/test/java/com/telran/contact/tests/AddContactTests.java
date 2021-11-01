@@ -1,21 +1,18 @@
-package com.telran.contact;
+package com.telran.contact.tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import com.telran.contact.models.Contact;
+import com.telran.contact.models.User;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.List;
 
 public class AddContactTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        if (!isSignOutTabPresent()) {
-            clickOnLoginTab();
-            login(new User()
+        if (!app.getUser().isSignOutTabPresent()) {
+            app.getUser().clickOnLoginTab();
+            app.getUser().login(new User()
                     .setEmail("mmm@mail.ru")
                     .setPassword("Mm$123456"));
         }
@@ -25,8 +22,14 @@ public class AddContactTests extends TestBase {
     public void addContactPositiveTest() throws InterruptedException {
         // текущее время в сек - преобразуем в переменную
         int d = (int) ((System.currentTimeMillis()) / 1000) % 3600;
-        addNewContact("Masha", "Marinina", "123-456" + d, "mmm" + d + "@gmail.com", "Dortmund", "description");
-        Assert.assertTrue(isContactCreated("123-456" + d));
+        app.getContact().addNewContact(new Contact()
+                .setName("Masha")
+                .setSurName("Marinina")
+                .setPhone("123-456" + d)
+                .setEmail("mmm" + d + "@gmail.com")
+                .setAddress("Dortmund")
+                .setDescription("description"));
+        Assert.assertTrue(app.getContact().isContactCreated("123-456" + d));
 //        removeContact("123-456" + d); //удаляем добавленный контракт
 
     }

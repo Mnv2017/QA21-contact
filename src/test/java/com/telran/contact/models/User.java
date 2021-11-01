@@ -1,4 +1,4 @@
-package com.telran.contact;
+package com.telran.contact.models;
 
 public class User {
     private  String email;
