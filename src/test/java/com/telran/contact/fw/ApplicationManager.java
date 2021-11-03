@@ -9,7 +9,7 @@ public class ApplicationManager {
 
     WebDriver driver;
 
-    UserHelper user; //объявили переменную для связи с базовым хелпером
+    UserHelper user; //объявили переменную для связи с хелпером
     ContactHelper contact; // --"--"--
     HomeHelper home;
 
