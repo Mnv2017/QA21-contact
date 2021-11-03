@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Regression" verbose="1" >
+
+    <test name="Regression">
+        <classes>
+            <class name="com.telran.contact.tests.HeaderTabsUnloggedUserTests"/>
+            <class name="com.telran.contact.tests.LoginTest">
+                <methods>
+                    <include name=".*Positive.*" />
+                </methods>
+            </class>
+            <class name="com.telran.contact.tests.HeaderTabsLoggedUserTests"/>
+        </classes>
+    </test>
+</suite>
