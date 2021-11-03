@@ -31,3 +31,12 @@ task testContact(type:Test) {
         systemProperty 'browser', "${browser}"
     }
 }
+
+task testHeader(type:Test) {
+    useTestNG(){
+        suites 'src/test/resources/testng_Header.xml'
+    }
+    if(project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+}
