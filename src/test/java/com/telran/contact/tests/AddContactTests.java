@@ -42,8 +42,8 @@ public class AddContactTests extends TestBase {
     }
 
     @Test(dataProvider = "newContact", dataProviderClass = DataProviders.class)
+    // данные для теста предоставляет итератор, возвращаемый методом newContact класса DataProviders
     public void addContactPositiveFromDataProviderTest(String name, String surname, String phone, String email, String addr, String des) throws InterruptedException {
-
         app.getContact().addNewContact(new Contact()
                 .setName(name)
                 .setSurName(surname)
@@ -56,7 +56,7 @@ public class AddContactTests extends TestBase {
     }
 
     @Test(dataProvider = "newContactFromCSV", dataProviderClass = DataProviders.class)
-
+    // данные для теста предоставляет итератор, возвращаемый методом newContactFromCSV класса DataProviders
     public void addContactPositiveFromCSVTest(Contact contact) throws InterruptedException {
         app.getContact().addNewContact(contact);
         Thread.sleep(1000);

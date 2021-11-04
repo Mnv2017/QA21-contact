@@ -1,5 +1,6 @@
 package com.telran.contact.tests;
 
+import com.telran.contact.fw.DataProviders;
 import com.telran.contact.models.User;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -15,7 +16,7 @@ public class CreateAccountTest extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() throws InterruptedException {
-        if (!app.getUser().isLoginTabPresent()){
+        if (!app.getUser().isLoginTabPresent()) {
             app.getUser().clickOnSignOutButton();
         }
     }
@@ -34,7 +35,7 @@ public class CreateAccountTest extends TestBase {
     }
 
     @Test
-    public void registrationNegativeWithoutPasswordTest(){
+    public void registrationNegativeWithoutPasswordTest() throws InterruptedException {
         app.getUser().clickOnLoginTab();
         // форма регистрации присутствует
         Assert.assertTrue(app.getUser().isLoginRegistrationFormPresent());
@@ -42,8 +43,29 @@ public class CreateAccountTest extends TestBase {
                         .setEmail("mmm@mail.ru")
                 // с незаполненным паролем
                 //      .setPassword("Mm$123456")
-                );
+        );
+        Thread.sleep(1000);
         Assert.assertTrue(app.getUser().isAlertPresent());
     }
 
+    @Test(dataProvider = "newUserWrongPassword", dataProviderClass = DataProviders.class)
+    public void registrationNegativeWithWrongPassword(String email, String password) {
+        app.getUser().clickOnLoginTab();
+        Assert.assertTrue(app.getUser().isLoginRegistrationFormPresent());
+        app.getUser().createNewAccount(new User()
+                .setEmail(email)
+                .setPassword(password)
+        );
+        Assert.assertTrue(app.getUser().isAlertPresent());
+
+    }
+
+    @Test(dataProvider = "newUserFromCSV", dataProviderClass = DataProviders.class)
+    public void registrationNegativeWithWrongEmail(User user) throws InterruptedException {
+        app.getUser().clickOnLoginTab();
+        Assert.assertTrue(app.getUser().isLoginRegistrationFormPresent());
+        app.getUser().createNewAccount(user);
+        Thread.sleep(1000);
+        Assert.assertTrue(app.getUser().isAlertPresent());
+    }
 }
