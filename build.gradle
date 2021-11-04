@@ -10,8 +10,9 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.seleniumhq.selenium:selenium-java:4.0.0'
+    implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
     implementation 'org.testng:testng:7.4.0'
+    implementation 'ch.qos.logback:logback-classic:1.2.3'
 }
 
 task testUser(type:Test) {

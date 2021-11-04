@@ -47,7 +47,7 @@ public class HelperBase {
 
     public boolean isAlertPresent() {
         //проверяет появление окна сообщения
-        Alert alert = new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.alertIsPresent());
+        Alert alert = new WebDriverWait(driver, 10).until(ExpectedConditions.alertIsPresent());
         if (alert == null) {
             return false;
         } else {
@@ -72,8 +72,8 @@ public class HelperBase {
         element.click();
     }
 
-    public void pause(int millis) {
-        // ожидание в милисекундах - пока не работает
-        new WebDriverWait(driver, Duration.ofSeconds(millis));
-    }
+//    public void pause(int millis) {
+//        // ожидание в милисекундах - пока не работает
+//        new WebDriverWait(driver, Duration.ofSeconds(millis));
+//    }
 }

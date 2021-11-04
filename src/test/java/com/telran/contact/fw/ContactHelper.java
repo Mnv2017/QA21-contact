@@ -43,7 +43,7 @@ public class ContactHelper extends HelperBase {
     public void addNewContact(Contact contact) {
         // кликнуть на Add
         click(By.cssSelector("a:nth-child(5)"));
-        pause(1000);
+//        pause(1000);
         // заполнить поля
         type(By.cssSelector("[placeholder='Name']"), contact.getName());
         type(By.cssSelector("input:nth-child(2)"), contact.getSurName());
