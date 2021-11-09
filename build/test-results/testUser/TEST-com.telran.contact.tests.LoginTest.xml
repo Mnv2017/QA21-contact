@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.telran.contact.tests.LoginTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-11-09T07:11:33" hostname="MBP-Natalia" time="0.916">
+  <properties/>
+  <testcase name="loginRegisteredUserNegativeWrongPasswortTest" classname="com.telran.contact.tests.LoginTest" time="0.916"/>
+  <system-out><![CDATA[08:11:33.607 [Test worker] INFO  com.telran.contact.tests.TestBase - Start test loginRegisteredUserNegativeWrongPasswortTestwith data: []
+08:11:33.612 [Test worker] INFO  com.telran.contact.tests.TestBase - Start search By.xpath: //a[contains(.,'LOGIN')]
+08:11:33.627 [Test worker] INFO  com.telran.contact.tests.TestBase - By.xpath: //a[contains(.,'LOGIN')] found.
+08:11:33.633 [Test worker] INFO  com.telran.contact.tests.TestBase - Start search By.xpath: //a[contains(.,'LOGIN')]
+08:11:33.641 [Test worker] INFO  com.telran.contact.tests.TestBase - By.xpath: //a[contains(.,'LOGIN')] found.
+08:11:33.686 [Test worker] INFO  com.telran.contact.tests.TestBase - Start search By.cssSelector: div.login_login__3EHKB
+08:11:33.702 [Test worker] INFO  com.telran.contact.tests.TestBase - By.cssSelector: div.login_login__3EHKB found.
+08:11:33.704 [Test worker] INFO  com.telran.contact.tests.TestBase - Start search By.cssSelector: [placeholder='Email']
+08:11:33.718 [Test worker] INFO  com.telran.contact.tests.TestBase - By.cssSelector: [placeholder='Email'] found.
+08:11:33.756 [Test worker] INFO  com.telran.contact.tests.TestBase - Start search By.cssSelector: [placeholder='Email']
+08:11:33.765 [Test worker] INFO  com.telran.contact.tests.TestBase - By.cssSelector: [placeholder='Email'] found.
+08:11:33.786 [Test worker] INFO  com.telran.contact.tests.TestBase - Start search By.cssSelector: [placeholder='Email']
+08:11:33.793 [Test worker] INFO  com.telran.contact.tests.TestBase - By.cssSelector: [placeholder='Email'] found.
+08:11:33.865 [Test worker] INFO  com.telran.contact.tests.TestBase - Start search By.cssSelector: [placeholder='Password']
+08:11:33.876 [Test worker] INFO  com.telran.contact.tests.TestBase - By.cssSelector: [placeholder='Password'] found.
+08:11:33.910 [Test worker] INFO  com.telran.contact.tests.TestBase - Start search By.cssSelector: [placeholder='Password']
+08:11:33.918 [Test worker] INFO  com.telran.contact.tests.TestBase - By.cssSelector: [placeholder='Password'] found.
+08:11:33.938 [Test worker] INFO  com.telran.contact.tests.TestBase - Start search By.cssSelector: [placeholder='Password']
+08:11:33.947 [Test worker] INFO  com.telran.contact.tests.TestBase - By.cssSelector: [placeholder='Password'] found.
+08:11:33.974 [Test worker] INFO  com.telran.contact.tests.TestBase - Start search By.xpath: //button[contains(., 'Login')]
+08:11:33.985 [Test worker] INFO  com.telran.contact.tests.TestBase - By.xpath: //button[contains(., 'Login')] found.
+08:11:34.551 [Test worker] INFO  com.telran.contact.tests.TestBase - PASSED: test method loginRegisteredUserNegativeWrongPasswortTest
+08:11:34.551 [Test worker] INFO  com.telran.contact.tests.TestBase - ***********************************
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
