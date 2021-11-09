@@ -1,6 +1,7 @@
 package com.telran.contact.tests;
 
 import com.telran.contact.fw.ApplicationManager;
+import org.openqa.selenium.remote.BrowserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
@@ -14,7 +15,7 @@ import java.util.Arrays;
 
 public class TestBase {
 
-    protected static ApplicationManager app = new ApplicationManager();
+    protected static ApplicationManager app = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
 
     Logger logger = LoggerFactory.getLogger(TestBase.class);
 
