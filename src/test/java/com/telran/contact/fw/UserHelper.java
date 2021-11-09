@@ -41,7 +41,7 @@ public class UserHelper extends HelperBase{
         // вход в систему, атрибут - объект user
         type(By.cssSelector("[placeholder='Email']"), user.getEmail());
         type(By.cssSelector("[placeholder='Password']"), user.getPassword());
-        click(By.xpath("//button[contains(., 'Login')]"));
+        click(By.xpath("//button[contains(., 'Login')]"));// ломаем локатор
     }
     public void loginUser(String email, String password) {
         // выполняет login пользователя с email и password
