@@ -3,9 +3,12 @@ package com.telran.contact.api.tests;
 import com.jayway.restassured.RestAssured;
 import com.telran.contact.api.dto.AuthRequestDto;
 import com.telran.contact.api.dto.AuthResponseDto;
+import com.telran.contact.api.dto.ContactDto;
+import com.telran.contact.api.dto.GetAllContactDto;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static com.jayway.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -24,7 +27,7 @@ public class RestAssuredTests {
                 .password("Mm$123456")
                 .build();
         // создаем экземпляр ответа --"--"--
-        AuthResponseDto responseDto = RestAssured.given()
+        AuthResponseDto responseDto = given()
                 .contentType("application/Json")
                 .body(requestDto)
                 .post("login")
@@ -34,7 +37,7 @@ public class RestAssuredTests {
         System.out.println(responseDto.getToken());
 
         String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im1tbUBtYWlsLnJ1In0.QIqAfln3hQCb2whO1P-YJFyUaFr1vV_scidKYDTlGSo";
-        AuthResponseDto responseTokenDto = RestAssured.given()
+        AuthResponseDto responseTokenDto = given()
                 .contentType("application/Json")
                 .body(requestDto)
                 .post("login")
@@ -45,6 +48,47 @@ public class RestAssuredTests {
 //                .extract().path("token");
                 .extract().response().as(AuthResponseDto.class);
         System.out.println(responseDto.getToken());
+
+    }
+
+    @Test
+    public void getAllContactDto() {
+        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im1tbUBtYWlsLnJ1In0.QIqAfln3hQCb2whO1P-YJFyUaFr1vV_scidKYDTlGSo";
+
+        GetAllContactDto responseDto = given()
+                .header("Authorization", token)
+                .get("contact")
+                .then()
+                .assertThat().statusCode(200)
+                .extract().body().as(GetAllContactDto.class);
+
+        for (ContactDto contactDto : responseDto.getContactDtoList()
+        ) {
+            System.out.println(contactDto.getId() + ",  " + contactDto.getName());
+            System.out.println("**************************");
+        }
+
+/*
+        String responseDto = given()
+                .header("Authorization", token)
+                .get("contact")
+                .then()
+                .assertThat().statusCode(500)
+                .extract().path("message");
+        System.out.println(responseDto);
+*/
+    }
+
+    @Test
+    public void deleteContactTest() {
+        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im1tbUBtYWlsLnJ1In0.QIqAfln3hQCb2whO1P-YJFyUaFr1vV_scidKYDTlGSo";
+        String status = given()
+                .header("Authorization", token)
+                .delete("contact/18194")
+                .then()
+                .assertThat().statusCode(200)
+                .extract().path("status");
+        System.out.println(status);
 
     }
 }
