@@ -12,5 +12,5 @@ import java.util.List;
 @Builder
 @ToString
 public class GetAllContactDto {
-    List<ContactDto> contactDtoList;
+    List<ContactDto> contacts;
 }
