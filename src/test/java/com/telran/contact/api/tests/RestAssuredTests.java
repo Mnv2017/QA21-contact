@@ -62,9 +62,9 @@ public class RestAssuredTests {
                 .assertThat().statusCode(200)
                 .extract().body().as(GetAllContactDto.class);
 
-        for (ContactDto contactDto : responseDto.getContactDtoList()
+        for (ContactDto contact : responseDto.getContacts()
         ) {
-            System.out.println(contactDto.getId() + ",  " + contactDto.getName());
+            System.out.println(contact.getId() + ",  " + contact.getName());
             System.out.println("**************************");
         }
 
